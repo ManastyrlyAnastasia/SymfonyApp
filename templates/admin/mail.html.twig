@@ -1,0 +1,164 @@
+{# templates/admin/mail.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Почта{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #e0e0e0;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar a {
+    display: block;
+    padding: 15px;
+    margin-bottom: 10px; /* Уменьшаем отступ между пунктами меню */
+     margin-top: 40px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333333;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+
+        .sidebar a:hover {
+            background-color: #d0d0d0;
+        }
+
+        .sidebar .logout a {
+            background-color: #ff0000;
+            color: #ffffff;
+        }
+
+        .sidebar .logout a:hover {
+            background-color: #cc0000;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .messages {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .message {
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .message p {
+            font-size: 16px;
+            color: #666666;
+            margin: 0;
+            margin-bottom: 20px;
+        }
+
+        .message .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .message .actions .reply,
+        .message .actions .delete {
+            background: none;
+            border: none;
+            color: #333333;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .message .actions .delete {
+            color: #ff0000;
+        }
+
+        .message .actions .reply:hover,
+        .message .actions .delete:hover {
+            color: #000000;
+        }
+
+        .write-message {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #333333;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .write-message:hover {
+            background-color: #555555;
+        }
+    </style>
+
+    <div class="sidebar">
+        <a href="{{ path('register_moderator') }}">Регистрация модератора</a>
+        <a href="{{ path('admin_faculty') }}">Факультеты</a>
+        <a href="{{ path('mail_index') }}">Почта</a>
+        <a href="{{ path('admin_files') }}">Личные файлы</a>
+        <a href="{{ path('admin_report') }}">Отчеты</a>
+        <a href="{{ path('change_password_index') }}">Смена пароля</a>
+        <div class="logout">
+            <a href="{{ path('app_logout') }}">Выход</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Почта</h1>
+        <div class="messages">
+            {% for i in 1..6 %}
+                <div class="message">
+                    <p>Тут будет сообщение от модератора</p>
+                    <div class="actions">
+                        <button class="reply">&#9998; Ответить</button> {# Edit pencil symbol #}
+                        <button class="delete">&#x274C;</button> {# X symbol for delete #}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="write-message">Написать письмо</button>
+    </div>
+{% endblock %}

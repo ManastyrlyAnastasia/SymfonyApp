@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report History</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Report ID</th>
+                <th>Status ID</th>
+                <th>Time</th>
+                <th>Filename</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reportHistory in reportHistories %}
+            <tr>
+                <td>{{ reportHistory.id }}</td>
+                <td>{{ reportHistory.report_id }}</td>
+                <td>{{ reportHistory.status_id }}</td>
+                <td>{{ reportHistory.time|date('Y-m-d H:i:s') }}</td>
+                <td>{{ reportHistory.filename }}</td>
+                <td>{{ reportHistory.message }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

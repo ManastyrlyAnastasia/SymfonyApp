@@ -1,0 +1,169 @@
+{# templates/report/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Отчеты{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #e0e0e0;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            margin-bottom: 10px;
+            margin-top: 40px;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333333;
+            font-size: 16px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #d0d0d0;
+        }
+
+        .sidebar .logout a {
+            background-color: #ff0000;
+            color: #ffffff;
+        }
+
+        .sidebar .logout a:hover {
+            background-color: #cc0000;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .content h1 {
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .controls select, .controls button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+        }
+
+        .controls button {
+            background-color: #333333;
+            color: #ffffff;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #555555;
+        }
+
+        .reports-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .reports-table th, .reports-table td {
+            border: 1px solid #cccccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .reports-table th {
+            background-color: #e0e0e0;
+        }
+    </style>
+
+    <div class="sidebar">
+        <a href="{{ path('register_moderator') }}">Регистрация модератора</a>
+        <a href="{{ path('admin_faculty') }}">Факультеты</a>
+        <a href="{{ path('mail_index') }}">Почта</a>
+        <a href="{{ path('admin_files') }}">Личные файлы</a>
+        {# <a href="{{ path('admin_report') }}">Отчеты</a> #}
+        <a href="{{ path('change_password_index') }}">Смена пароля</a>
+        <div class="logout">
+            <a href="{{ path('app_logout') }}">Выход</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Отчеты</h1>
+        <div class="controls">
+            <select>
+               {% for report in reports %}
+                <option value="{{ report.id }}">{{ report.name }}</option>
+            {% endfor %}
+            </select>
+            <button type="button">Сгенерировать</button>
+        </div>
+        <table class="reports-table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>time</th>
+                    <th>report_id</th>
+                    <th>status</th>
+                    <th>username</th>
+                    <th>filename</th>
+                    <th>message</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if reportHistory is defined and reportHistory|length > 0 %}
+                    {% for reportHistory in reportHistory %}
+                        <tr>
+                            <td>{{ reportHistory.id }}</td>
+                            <td>{{ reportHistory.time|date('Y-m-d H:i:s') }}</td>
+                            <td>{{ reportHistory.report.name }}</td>
+                            <td>{{ reportHistory.status.name }}</td>
+                            <td>{{ reportHistory.user.username }}</td>
+                            <td>{{ reportHistory.filename }}</td>
+                            <td>{{ reportHistory.message }}</td>
+                            <td>
+                                <a href="#" class="download-icon">
+                                    <i class="fas fa-download"></i>
+                                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="#" class="delete-icon" >
+                                    <i class="fas fa-times-circle" style="color: red;"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="7">Нет данных для отображения</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

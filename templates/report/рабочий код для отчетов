@@ -1,0 +1,29 @@
+INSERT INTO groups (name, start_year, end_year) VALUES 
+('Group FY2001', 2020, 2024),
+('Group BY1902', 2019, 2023),
+('Group CE2101', 2021, 2025),
+('Group DY1801', 2018, 2022),
+('Group ED2202', 2022, 2026);
+
+
+INSERT INTO students (name, surname, birth, adress, groups) VALUES 
+('John', 'Doe', '2000-01-01', '123 Main St', 'FY2001'),
+('Jane', 'Smith', '1999-05-15', '456 Elm St', 'BY1902'),
+('Alice', 'Johnson', '2001-07-22', '789 Oak St', 'BY1902'),
+('Bob', 'Brown', '1998-02-10', '101 Pine St', 'DY1801'),
+('Eve', 'Davis', '2000-11-30', '202 Maple St', 'ED2202');
+
+
+sqlite> SELECT * FROM faculty;
+11|Faculty of Science
+12|Faculty of Arts
+13|Faculty of Engineering
+14|Faculty of Medicine
+15|Faculty of Business
+
+sqlite> SELECT * FROM specialization;
+1|Physics|Faculty of Science
+2|Chemistry|Faculty of Science
+3|History|Faculty of Arts
+4|Mechanical Engineering|Faculty of Engineering
+5|Computer Science|Faculty of Engineering

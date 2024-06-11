@@ -1,0 +1,96 @@
+{# templates/admin/create.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Личный кабинет администратора{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .admin-dashboard {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 600px;
+        }
+
+        .admin-dashboard h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .admin-dashboard .buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .admin-dashboard .buttons a {
+            display: inline-block;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 2px solid #cccccc;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333333;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .admin-dashboard .buttons a:hover {
+            background-color: #e0e0e0;
+            transform: scale(1.02);
+        }
+
+        .admin-dashboard .logout {
+            margin-top: 20px;
+        }
+
+        .admin-dashboard .logout a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            border: 2px solid #ff0000;
+            border-radius: 5px;
+            color: #ff0000;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .admin-dashboard .logout a:hover {
+            background-color: #ffe0e0;
+            transform: scale(1.02);
+        }
+    </style>
+
+    <div class="admin-dashboard">
+      
+        <a href="{{ path('register_moderator') }}">Регистрация модератора</a>
+        <a href="{{ path('admin_faculty') }}">Факультеты</a>
+        <a href="{{ path('mail_index') }}">Почта</a>
+        <a href="{{ path('admin_files') }}">Личные файлы</a>
+        <a href="{{ path('admin_report') }}">Отчеты</a>
+        <a href="{{ path('change_password_index') }}">Смена пароля</a>
+        <div class="logout">
+            <a href="{{ path('app_logout') }}">Выход</a>
+      
+    </div>
+        <div class="logout">
+            <a href="{{ path('app_logout') }}">Выход</a>
+        </div>
+    </div>
+{% endblock %}

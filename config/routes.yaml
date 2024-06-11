@@ -1,0 +1,45 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+
+
+# app_task_view:
+#     path: '/task/view/{id}'
+#     controller: App\Controller\TaskController::view
+
+
+# task_delete:
+#     path: /task/list
+#     controller: App\Controller\TaskController::delete
+#     methods: ['POST']
+
+# task_update:
+#     path: '/task/update/{id}'
+#     controller: App\Controller\TaskController::update
+
+# task_create:
+#     path: '/task/create'
+#     controller: App\Controller\TaskController::create
+    
+    # list:
+    # path: '/task/list'
+    # controller: App\Controller\TaskController::list
+app_dashboard:
+    path: '/admin/app_admin'
+    controller: App\Controller\AdminController::create
+
+# config/routes.yaml
+register_moderator:
+    path: /register_moderator
+    controller: App\Controller\ModeratorController::register
+
+register_moderator_success:
+    path: /register_moderator/success
+    controller: App\Controller\ModeratorController::success
+
+admin_files:
+    path: /admin_files
+    controller: App\Controller\PersFilesController::files
